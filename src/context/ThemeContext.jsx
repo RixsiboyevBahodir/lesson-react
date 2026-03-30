@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { Theme } from "./Context";
+import { inishilState, reducer } from "./store";
 
 export default function ContextProvider({ children }) {
   const [color, setColor] = useState("light");
-
-  const [wishList, setWshList] = useState([]);
 
   function changeColor() {
     const html = document.querySelector("html");
@@ -18,8 +17,10 @@ export default function ContextProvider({ children }) {
     }
   }
 
+  const [count,despash]= useReducer(reducer,inishilState)
+
   return (
-    <Theme.Provider value={{ color, changeColor, setWshList, wishList }}>
+    <Theme.Provider value={{ color, changeColor,count ,despash}}>
       {children}
     </Theme.Provider>
   );

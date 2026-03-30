@@ -1,4 +1,4 @@
-import { Footer } from "antd/es/layout/layout";
+import Footer from "./layout/Footer";
 import Navbar from "./layout/Navbar";
 import { Outlet } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function Layout() {
         <div className="content">
             <Navbar />
             <Outlet />
-            <Footer />
+            <Footer/>
         </div>
     )
 }

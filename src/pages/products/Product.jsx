@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
 export default function Product() {
@@ -20,7 +19,10 @@ export default function Product() {
   }, [id]);
 
   return (
-    <div className="content">
+    <div className="content h-100vh">
+      <Helmet>
+        <title>{data?.title}</title>
+      </Helmet>
       <div className="flex gap-10">
         <img
           src={data?.images?.[0]}

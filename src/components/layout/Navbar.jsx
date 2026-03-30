@@ -21,7 +21,7 @@ export default function Navbar() {
   const [inputData, setInputData] = useState("");
   const [show, setShow] = useState(false);
 
-  const { wishList } = useContext(Theme);
+  const { count } = useContext(Theme);
 
   function focus() {
     setShow(true);
@@ -103,7 +103,7 @@ export default function Navbar() {
               <LuHeart className="text-[21px] dark:text-[#ffffffd4]" />
               <p className="dark:text-[#ffffffd4]">Like</p>
               <p className="absolute bg-red-500 px-2 text-white text-[10px] rounded-2xl left-0 top-0">
-                {wishList?.length}
+                {count.arr?.length}
               </p>
             </div>
           </Link>

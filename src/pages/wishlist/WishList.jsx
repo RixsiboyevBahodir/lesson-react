@@ -4,11 +4,13 @@ import { TbBasketPlus } from "react-icons/tb";
 import { Theme } from "../../context/Context";
 
 export default function WishList() {
-  const { wishList } = useContext(Theme);
+  const { count } = useContext(Theme);
+
+  console.log(count)
 
   return (
     <div className="grid grid-cols-5 gap-5">
-      {wishList?.map((card) => (
+      {count.arr?.map((card) => (
         <div
           key={card.id}
           className="max-w-56 rounded-lg shadow-xl/20 overflow-hidden"

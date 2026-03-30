@@ -8,11 +8,12 @@ import { Theme } from "../context/Context";
 
 export default function CardWrapper() {
   const [loading, setLoading] = useState(false);
-  console.log(setLoading);
 
   const [current, setCurrent] = useState(1);
 
-  const { setWshList, wishList } = useContext(Theme);
+  const {count ,despash} = useContext(Theme);
+
+  console.log(count)
 
   const onChange = (page) => {
     const skip = pageSize * (current - 1);
@@ -38,22 +39,14 @@ export default function CardWrapper() {
     cardData(0);
   }, []);
 
+
+
   const addToWishlist = (card) => {
-    const wishListChek = wishList.some((item) => item.id == card.id);
-
-    let newWishList = [];
-
-    if (wishListChek) {
-      newWishList = wishList?.filter((item) => item.id !== card.id);
-    } else {
-      if (wishList.length) {
-        newWishList = [...wishList, card];
-      } else {
-        newWishList = [card];
-      }
-    }
-    setWshList(newWishList);
+    despash({type:'WishList',card})
   };
+
+
+
 
   if (loading) {
     return (
@@ -75,7 +68,7 @@ export default function CardWrapper() {
         {data?.products?.map((card) => (
           <div
             key={card.id}
-            className="max-w-56 rounded-lg shadow-xl/20 overflow-hidden"
+            className="max-w-56 rounded-lg shadow-xl/20 overflow-hidden] dark:bg-white/10"
           >
             <div className="bg-[#edf1e3] relative">
               <img src={card.thumbnail} alt="card image" />
@@ -83,7 +76,7 @@ export default function CardWrapper() {
                 {card.discountPercentage}%
               </p>
               <FaHeart
-                className={`hover:text-red-500 text-gray-400 transition-all cursor-pointer absolute top-2 right-2 text-2xl ${wishList?.some((item) => item.id == card.id) ? `text-red-500` : `text-gray-400`}`}
+                className={`hover:text-red-500 text-gray-400 transition-all cursor-pointer absolute top-2 right-2 text-2xl ${count.arr?.some((item) => item.id == card.id) ? `text-red-500` : `text-gray-400`}`}
                 onClick={() => addToWishlist(card)}
               />
             </div>
@@ -92,11 +85,11 @@ export default function CardWrapper() {
                 {card.title}
               </p>
               <p className="text-red-500 font-bold">{card.price}$</p>
-              <p className="text-[15px] line-clamp-3">{card.description}</p>
+              <p className="text-[15px] line-clamp-3 dark:text-white">{card.description}</p>
               <div className="flex justify-between items-center pb-3">
                 <div className="flex items-center gap-2">
                   <p className="text-yellow-600 font-bold text-xl">★</p>
-                  <p>{card.rating}</p>
+                  <p className="dark:text-white">{card.rating}</p>
                 </div>
                 <div className="flex gap-2 text-[12px] bg-[#aaaaaa] p-1 rounded-2xl">
                   <p>({card.minimumOrderQuantity}</p>
